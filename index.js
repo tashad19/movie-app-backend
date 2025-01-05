@@ -6,6 +6,14 @@ dotenv.config(); // Load environment variables
 
 const app = express();
 
+// Allow requests from your frontend's origin
+const corsOptions = {
+  origin: "https://movie-app-tashad.netlify.app", // Your Netlify app URL
+  methods: ["GET", "POST"],
+};
+
+app.use(cors(corsOptions)); // Enable CORS for specified origin
+
 const API_KEY = process.env.TMDB_API_KEY;
 
 app.get("/api/popular-movies", async (req, res) => {
